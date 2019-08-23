@@ -8,9 +8,9 @@ https://www.youtube.com/watch?v=j7rrHHR0qYw
 
 To get a proper squidguard list of IPs and domains, look around the internet. I am not going to share mine as it has too many false positives.
 
-#Now for the other half:
+# Now for the other half:
 
-###Mikrotik Rules:
+### Mikrotik Rules:
 /ip firewall mangle chain=prerouting action=mark-routing new-routing-mark=to_proxy passthrough=yes protocol=tcp src-address=YOUR_IP_HERE dst-port=80
 --Replace YOUR_IP_HERE with an actual IP or subnet
 --Add port 443, 8080, etc
@@ -21,7 +21,7 @@ To get a proper squidguard list of IPs and domains, look around the internet. I 
 --Replace YOUR_SQUID_IP with your squid server's actual IP address
 
 
-###Linux Rules (on your IP):
+### Linux Rules (on your IP):
 On your raspberry pi that is running squid, add this IP tables rule:
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to YOUR_IP:YOUR_PORT
 --Replace YOUR_IP and YOUR_PORT with the raspberry pi's IP and the port your squid is running on (should be 3128)
